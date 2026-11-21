@@ -1,0 +1,40 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import CtaBanner from '../../components/CtaBanner.astro';
+import { SITE } from '../../data/site';
+import { ARTICLES } from '../../data/catalog';
+---
+
+<BaseLayout
+  title={`Kiến thức đồng hồ cơ cao cấp — ${SITE.name}`}
+  description="Chia sẻ ngắn gọn, dễ hiểu về cách nhận biết đồng hồ cần bảo dưỡng, nguyên nhân sai số và cách bảo quản đồng hồ cao cấp."
+>
+  <section class="section section--surface">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="/">Trang chủ</a> / <span>Kiến thức</span>
+      </nav>
+
+      <div class="section__header">
+        <span class="eyebrow">Kiến thức đồng hồ</span>
+        <h1 class="font-serif" style="font-size: clamp(2rem, 3.3vw, 2.7rem);">Kiến thức chăm sóc đồng hồ cơ</h1>
+        <p class="lead">
+          Những điều cơ bản nhưng quan trọng giúp bạn sử dụng và bảo quản đồng hồ cao cấp bền lâu, tránh hư hỏng tốn kém.
+        </p>
+      </div>
+
+      <div class="grid grid--3">
+        {ARTICLES.map((post) => (
+          <a href={`/kien-thuc/${post.slug}/`} class="card">
+            <span class="eyebrow">{post.category} · {post.readTime}</span>
+            <h2>{post.title}</h2>
+            <p class="card__meta">{post.summary}</p>
+            <span class="card__link">Đọc chi tiết →</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CtaBanner />
+</BaseLayout>

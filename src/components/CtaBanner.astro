@@ -1,0 +1,46 @@
+---
+import { SITE } from '../data/site';
+
+interface Props {
+  title?: string;
+  subtitle?: string;
+}
+
+const {
+  title = 'Cần kiểm tra hoặc tư vấn sửa đồng hồ?',
+  subtitle = 'Bạn có thể gửi ảnh mặt đồng hồ, tình trạng đang gặp qua Zalo hoặc WhatsApp để tôi xem trước và tư vấn hướng xử lý rõ ràng.',
+} = Astro.props;
+---
+
+<section class="section section--dark">
+  <div class="container cta-box">
+    <div>
+      <span class="eyebrow">Tư vấn trực tiếp với Hào Nam</span>
+      <h2 class="font-serif" style="font-size: 2rem;">{title}</h2>
+      <p class="lead" style="margin-bottom: 0;">{subtitle}</p>
+    </div>
+    <div class="btn-group">
+      <a href="/lien-he/#dat-lich" class="btn btn--primary">Đặt lịch kiểm tra</a>
+      <a href={SITE.zaloHref} target="_blank" rel="noopener noreferrer" class="btn btn--outline-light">
+        Gửi ảnh qua Zalo ({SITE.phoneDisplay})
+      </a>
+      <a href={SITE.whatsappHref} target="_blank" rel="noopener noreferrer" class="btn btn--outline-light">
+        WhatsApp
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .cta-box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .cta-box > div:first-child {
+    max-width: 620px;
+  }
+</style>

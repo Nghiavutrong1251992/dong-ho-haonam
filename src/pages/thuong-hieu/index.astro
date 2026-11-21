@@ -1,0 +1,53 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import CtaBanner from '../../components/CtaBanner.astro';
+import { SITE, LEGAL_DISCLAIMER } from '../../data/site';
+import { BRANDS, OTHER_LUXURY_BRANDS } from '../../data/catalog';
+---
+
+<BaseLayout
+  title={`Thương hiệu đồng hồ cao cấp nhận sửa — ${SITE.name}`}
+  description="Sửa chữa, bảo dưỡng đồng hồ Rolex, Omega, Patek Philippe, Audemars Piguet, Cartier, IWC, Jaeger-LeCoultre, Longines tại Hao Nam Watch Care."
+>
+  <section class="section section--surface">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="/">Trang chủ</a> / <span>Thương hiệu</span>
+      </nav>
+
+      <div class="section__header" style="max-width: 780px;">
+        <span class="eyebrow">Sửa chữa theo thương hiệu</span>
+        <h1 class="font-serif" style="font-size: clamp(2rem, 3.3vw, 2.7rem);">
+          Các thương hiệu đồng hồ cao cấp tôi trực tiếp xử lý
+        </h1>
+        <p class="lead">
+          Mỗi thương hiệu Thụy Sĩ có thiết kế bộ máy, hệ thống chống nước và cách hoàn thiện vỏ khác nhau. Chọn thương hiệu bên dưới để xem chi tiết các dòng máy thường gặp.
+        </p>
+      </div>
+
+      <div class="grid grid--3" style="margin-bottom: 2.5rem;">
+        {BRANDS.map((brand) => (
+          <a href={`/thuong-hieu/${brand.slug}/`} class="card">
+            <span class="eyebrow">Luxury Swiss Watch</span>
+            <h3>{brand.name}</h3>
+            <p class="card__meta">{brand.summary}</p>
+            <span class="card__link">Xem chi tiết {brand.name} →</span>
+          </a>
+        ))}
+      </div>
+
+      <div class="card" style="background: var(--surface-alt); margin-bottom: 2rem;">
+        <h3>Các thương hiệu cao cấp khác cũng tiếp nhận</h3>
+        <p class="card__meta" style="margin-bottom: 0;">
+          Ngoài 5 thương hiệu trọng tâm trên, tôi cũng nhận kiểm tra, lau dầu và sửa chữa cho: <strong>{OTHER_LUXURY_BRANDS.join(', ')}</strong>. Bạn có thể gửi ảnh đồng hồ qua Zalo <strong>{SITE.phoneDisplay}</strong> để tôi xem trước.
+        </p>
+      </div>
+
+      <div class="notice">
+        {LEGAL_DISCLAIMER}
+      </div>
+    </div>
+  </section>
+
+  <CtaBanner />
+</BaseLayout>

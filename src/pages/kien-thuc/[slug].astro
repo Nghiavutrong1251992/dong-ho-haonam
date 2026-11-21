@@ -1,0 +1,45 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import CtaBanner from '../../components/CtaBanner.astro';
+import { SITE } from '../../data/site';
+import { ARTICLES } from '../../data/catalog';
+
+export function getStaticPaths() {
+  return ARTICLES.map((article) => ({
+    params: { slug: article.slug },
+    props: { article },
+  }));
+}
+
+const { article } = Astro.props;
+---
+
+<BaseLayout
+  title={`${article.title} — ${SITE.name}`}
+  description={article.summary}
+>
+  <section class="section section--surface">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="/">Trang chủ</a> / <a href="/kien-thuc/">Kiến thức</a> / <span>{article.category}</span>
+      </nav>
+
+      <article class="prose">
+        <span class="eyebrow">{article.category} · {article.readTime}</span>
+        <h1 class="font-serif" style="font-size: clamp(1.9rem, 3.2vw, 2.5rem);">{article.title}</h1>
+        <p class="lead">{article.summary}</p>
+
+        {article.sections.map((sec) => (
+          <section>
+            <h2>{sec.heading}</h2>
+            {sec.body.map((paragraph) => (
+              <p>{paragraph}</p>
+            ))}
+          </section>
+        ))}
+      </article>
+    </div>
+  </section>
+
+  <CtaBanner />
+</BaseLayout>

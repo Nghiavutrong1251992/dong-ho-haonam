@@ -1,0 +1,67 @@
+---
+interface Props {
+  label: string;
+  note?: string;
+  ratio?: '16/9' | '4/3' | '3/2' | '1/1';
+  dark?: boolean;
+}
+
+const {
+  label,
+  note = 'Chỗ trống để chèn ảnh thực tế sau',
+  ratio = '4/3',
+  dark = false,
+} = Astro.props;
+---
+
+<figure class:list={['image-slot', { 'image-slot--dark': dark }]} style={`aspect-ratio: ${ratio};`}>
+  <div class="image-slot__inner">
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+      <rect x="3" y="5" width="18" height="14" rx="2" />
+      <circle cx="8.5" cy="10.5" r="1.5" />
+      <path d="M21 15l-4.5-4.5L7 19" />
+    </svg>
+    <strong class="image-slot__label">{label}</strong>
+    <span class="image-slot__note">{note}</span>
+  </div>
+</figure>
+
+<style>
+  .image-slot {
+    margin: 0;
+    width: 100%;
+    border: 1.5px dashed #c8bfae;
+    background: linear-gradient(135deg, #f3efe6 0%, #ebe5d8 100%);
+    border-radius: var(--radius);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.25rem;
+    text-align: center;
+    color: #5e5648;
+  }
+
+  .image-slot--dark {
+    border-color: #3a4048;
+    background: linear-gradient(135deg, #171a1e 0%, #1f242a 100%);
+    color: #b7bec7;
+  }
+
+  .image-slot__inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.4rem;
+    max-width: 340px;
+  }
+
+  .image-slot__label {
+    font-size: 0.92rem;
+    font-weight: 600;
+  }
+
+  .image-slot__note {
+    font-size: 0.8rem;
+    opacity: 0.85;
+  }
+</style>

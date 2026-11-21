@@ -1,0 +1,68 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ImageSlot from '../../components/ImageSlot.astro';
+import CtaBanner from '../../components/CtaBanner.astro';
+import { SITE, LEGAL_DISCLAIMER } from '../../data/site';
+import { EIGHT_SERVICES, SERVICES } from '../../data/catalog';
+---
+
+<BaseLayout
+  title={`Sửa đồng hồ cao cấp — ${SITE.name}`}
+  description="Dịch vụ sửa chữa, bảo dưỡng, lau dầu và phục hồi đồng hồ cơ cao cấp, đồng hồ Thụy Sĩ trực tiếp bởi Hào Nam."
+>
+  <section class="section section--surface">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="/">Trang chủ</a> / <span>Sửa đồng hồ cao cấp</span>
+      </nav>
+
+      <div class="section__header" style="max-width: 820px;">
+        <span class="eyebrow">Trang dịch vụ chính</span>
+        <h1 class="font-serif" style="font-size: clamp(2rem, 3.4vw, 2.75rem);">
+          Sửa chữa & bảo dưỡng đồng hồ cao cấp
+        </h1>
+        <p class="lead">
+          Tôi là Hào Nam. Tại <strong>{SITE.name}</strong>, tôi chỉ nhận kiểm tra và sửa chữa đồng hồ cơ cao cấp, đồng hồ Thụy Sĩ.
+          Mọi công đoạn đều được thực hiện bằng đầy đủ máy móc chuyên dụng và giải thích đơn giản để bạn nắm rõ tình trạng chiếc đồng hồ của mình.
+        </p>
+      </div>
+
+      <div style="margin-bottom: 3rem;">
+        <ImageSlot
+          ratio="16/9"
+          label="Ảnh tổng quan bàn kỹ thuật & máy móc sửa đồng hồ cao cấp"
+          note="Chèn ảnh toàn cảnh khu vực làm việc, máy rửa, máy đo sai số, kính hiển vi"
+        />
+      </div>
+
+      <h2 class="font-serif" style="font-size: 1.8rem; margin-bottom: 1.25rem;">8 hạng mục dịch vụ chuyên sâu</h2>
+      <div class="grid grid--4" style="margin-bottom: 3rem;">
+        {EIGHT_SERVICES.map((item) => (
+          <a href={item.href} class="card">
+            <h3>{item.title}</h3>
+            <p class="card__meta">{item.desc}</p>
+            <span class="card__link">Xem chi tiết →</span>
+          </a>
+        ))}
+      </div>
+
+      <h2 class="font-serif" style="font-size: 1.8rem; margin-bottom: 1.25rem;">Chi tiết các nhóm dịch vụ chính</h2>
+      <div class="grid grid--3">
+        {SERVICES.map((s) => (
+          <a href={`/dich-vu/${s.slug}/`} class="card">
+            <span class="eyebrow">{s.duration}</span>
+            <h3>{s.title}</h3>
+            <p class="card__meta">{s.summary}</p>
+            <span class="card__link">Xem quy trình & bảo hành →</span>
+          </a>
+        ))}
+      </div>
+
+      <div class="notice" style="margin-top: 2.5rem;">
+        {LEGAL_DISCLAIMER}
+      </div>
+    </div>
+  </section>
+
+  <CtaBanner />
+</BaseLayout>

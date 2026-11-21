@@ -1,0 +1,265 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ImageSlot from '../components/ImageSlot.astro';
+import CtaBanner from '../components/CtaBanner.astro';
+import { SITE, LEGAL_DISCLAIMER } from '../data/site';
+import { BRANDS, EIGHT_SERVICES, OTHER_LUXURY_BRANDS, REPAIR_CASES, ARTICLES } from '../data/catalog';
+---
+
+<BaseLayout
+  title={`${SITE.name} — Chuyên sửa chữa & bảo dưỡng đồng hồ cao cấp`}
+  description={SITE.description}
+>
+  <!-- Hero -->
+  <section class="section section--dark hero">
+    <div class="container hero__grid">
+      <div class="hero__content">
+        <span class="eyebrow">Hao Nam Watch Care · Luxury Watch Repair</span>
+        <h1 class="hero__title">Sửa chữa & bảo dưỡng đồng hồ cao cấp bằng máy móc chuẩn và tay nghề thật.</h1>
+        <p class="lead">
+          Tôi là <strong>Hào Nam</strong>. Cửa hàng của tôi chỉ chuyên làm đồng hồ cơ cao cấp và đồng hồ Thụy Sĩ.
+          Với đầy đủ máy móc chuyên dụng và kinh nghiệm xử lý nhiều bộ máy phức tạp, tôi trực tiếp kiểm tra, giải thích rõ ràng và sửa chữa cẩn thận từng chiếc đồng hồ.
+        </p>
+
+        <div class="btn-group" style="margin-top: 1.5rem;">
+          <a href="/lien-he/#dat-lich" class="btn btn--primary">Đặt lịch kiểm tra đồng hồ</a>
+          <a href={SITE.zaloHref} target="_blank" rel="noopener noreferrer" class="btn btn--outline-light">
+            Gửi ảnh tư vấn qua Zalo ({SITE.phoneDisplay})
+          </a>
+        </div>
+
+        <div class="hero__meta">
+          <span>Hotline / Zalo / WhatsApp: <strong>{SITE.phoneDisplay}</strong></span>
+          <span>·</span>
+          <a href={SITE.facebookHref} target="_blank" rel="noopener noreferrer">Facebook: Haonam1139</a>
+        </div>
+      </div>
+
+      <div class="hero__media">
+        <ImageSlot
+          dark={true}
+          ratio="4/3"
+          label="Ảnh chính bàn kỹ thuật & Hào Nam"
+          note="Chèn ảnh Hào Nam đang kiểm tra đồng hồ hoặc góc máy móc chuyên dụng"
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- 4 Điểm cốt lõi -->
+  <section class="section section--surface">
+    <div class="container">
+      <div class="grid grid--4">
+        <div class="card">
+          <span class="eyebrow">01 · Chuyên sâu</span>
+          <h3>Chỉ làm hàng cao cấp</h3>
+          <p class="card__meta" style="margin-bottom: 0;">
+            Tập trung hoàn toàn vào đồng hồ cơ Thụy Sĩ và đồng hồ Luxury, không làm lẫn lộn dịch vụ phổ thông.
+          </p>
+        </div>
+        <div class="card">
+          <span class="eyebrow">02 · Thiết bị</span>
+          <h3>Đầy đủ máy móc chuẩn</h3>
+          <p class="card__meta" style="margin-bottom: 0;">
+            Trang bị máy đo sai số, máy rửa siêu âm, máy thử áp suất nước và kính hiển vi kỹ thuật.
+          </p>
+        </div>
+        <div class="card">
+          <span class="eyebrow">03 · Minh bạch</span>
+          <h3>Giải thích đơn giản, rõ lỗi</h3>
+          <p class="card__meta" style="margin-bottom: 0;">
+            Kiểm tra xong báo đúng tình trạng, đúng chi phí và thời gian hoàn thành trước khi làm.
+          </p>
+        </div>
+        <div class="card">
+          <span class="eyebrow">04 · Hậu mãi</span>
+          <h3>Bảo hành rõ ràng</h3>
+          <p class="card__meta" style="margin-bottom: 0;">
+            Theo dõi chạy thử kỹ nhiều ngày trước khi giao và bảo hành 12 tháng cho hạng mục kỹ thuật.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Dịch vụ chuyên sâu -->
+  <section class="section">
+    <div class="container">
+      <div class="section__header">
+        <span class="eyebrow">Dịch vụ chuyên sâu</span>
+        <h2 class="font-serif" style="font-size: 2.1rem;">Chăm sóc toàn diện cho đồng hồ cơ cao cấp</h2>
+        <p class="lead">
+          Từ lau dầu bảo dưỡng định kỳ đến sửa bộ máy phức tạp hay xử lý vào nước khẩn cấp.
+        </p>
+      </div>
+
+      <div class="grid grid--4">
+        {EIGHT_SERVICES.map((item) => (
+          <a href={item.href} class="card">
+            <h3>{item.title}</h3>
+            <p class="card__meta">{item.desc}</p>
+            <span class="card__link">Xem chi tiết →</span>
+          </a>
+        ))}
+      </div>
+
+      <div style="margin-top: 2rem;">
+        <a href="/sua-dong-ho-cao-cap/" class="btn btn--dark">Xem tổng quan dịch vụ sửa đồng hồ cao cấp</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Thương hiệu nhận sửa -->
+  <section class="section section--surface">
+    <div class="container">
+      <div class="section__header">
+        <span class="eyebrow">Thương hiệu</span>
+        <h2 class="font-serif" style="font-size: 2.1rem;">Các thương hiệu đồng hồ cao cấp thường tiếp nhận</h2>
+        <p class="lead">
+          Mỗi hãng có cấu tạo máy và điểm cần lưu ý riêng. Bạn có thể xem chi tiết các dòng máy tôi thường xử lý bên dưới.
+        </p>
+      </div>
+
+      <div class="grid grid--3">
+        {BRANDS.map((brand) => (
+          <a href={`/thuong-hieu/${brand.slug}/`} class="card">
+            <h3>{brand.name}</h3>
+            <p class="card__meta">{brand.summary}</p>
+            <span class="card__link">Xem kinh nghiệm sửa {brand.name} →</span>
+          </a>
+        ))}
+        <a href="/thuong-hieu/" class="card" style="background: var(--surface-alt);">
+          <h3>Các thương hiệu Thụy Sĩ khác</h3>
+          <p class="card__meta">{OTHER_LUXURY_BRANDS.join(' · ')}</p>
+          <span class="card__link">Xem tất cả thương hiệu →</span>
+        </a>
+      </div>
+
+      <div class="notice" style="margin-top: 1.75rem;">
+        {LEGAL_DISCLAIMER}
+      </div>
+    </div>
+  </section>
+
+  <!-- Dự án sửa chữa thực tế -->
+  <section class="section">
+    <div class="container">
+      <div class="section__header">
+        <span class="eyebrow">Dự án sửa chữa (Service Cases)</span>
+        <h2 class="font-serif" style="font-size: 2.1rem;">Ca sửa chữa thực tế</h2>
+        <p class="lead">
+          Ghi nhận rõ tình trạng ban đầu, quá trình xử lý bằng máy móc và kết quả đo kiểm trước khi giao lại cho khách.
+        </p>
+      </div>
+
+      <div class="grid grid--2">
+        {REPAIR_CASES.map((item) => (
+          <article class="card">
+            <div class="grid grid--2" style="gap: 0.75rem; margin-bottom: 1.25rem;">
+              <ImageSlot ratio="4/3" label="Trước khi sửa" note={item.beforeNote} />
+              <ImageSlot ratio="4/3" label="Sau hoàn thiện" note={item.afterNote} />
+            </div>
+            <span class="eyebrow">{item.brand} · {item.model}</span>
+            <h3>{item.title}</h3>
+            <p class="card__meta"><strong>Tình trạng:</strong> {item.issue}</p>
+            <p class="card__meta" style="margin-bottom: 0;"><strong>Kết quả:</strong> {item.result}</p>
+            <a href={`/du-an/${item.slug}/`} class="card__link">Xem chi tiết ca sửa →</a>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Quy trình 5 bước -->
+  <section class="section section--surface">
+    <div class="container">
+      <div class="section__header">
+        <span class="eyebrow">Quy trình làm việc</span>
+        <h2 class="font-serif" style="font-size: 2.1rem;">5 bước tiếp nhận và sửa chữa minh bạch</h2>
+      </div>
+      <div class="grid grid--3">
+        <div class="card">
+          <span class="eyebrow">Bước 1</span>
+          <h3>Tiếp nhận & kiểm tra ngoại quan</h3>
+          <p class="card__meta">Ghi nhận tình trạng vỏ, kính, mặt số và lắng nghe vấn đề bạn đang gặp.</p>
+        </div>
+        <div class="card">
+          <span class="eyebrow">Bước 2</span>
+          <h3>Kiểm tra bộ máy bằng thiết bị</h3>
+          <p class="card__meta">Đo sai số, biên độ dao động và mở máy kiểm tra trực tiếp dưới kính hiển vi.</p>
+        </div>
+        <div class="card">
+          <span class="eyebrow">Bước 3</span>
+          <h3>Giải thích & báo giá rõ ràng</h3>
+          <p class="card__meta">Nói rõ lỗi gì, cần làm gì, chi phí và thời gian bao lâu trước khi bắt tay vào sửa.</p>
+        </div>
+        <div class="card">
+          <span class="eyebrow">Bước 4</span>
+          <h3>Thực hiện sửa chữa / bảo dưỡng</h3>
+          <p class="card__meta">Tháo lắp, vệ sinh siêu âm, tra dầu đúng chuẩn và thay gioăng mới (khi cần).</p>
+        </div>
+        <div class="card">
+          <span class="eyebrow">Bước 5</span>
+          <h3>Kiểm định & bàn giao</h3>
+          <p class="card__meta">Test kín nước, theo dõi chạy thử nhiều tư thế rồi mới giao tận tay kèm bảo hành.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Kiến thức đồng hồ -->
+  <section class="section">
+    <div class="container">
+      <div class="section__header">
+        <span class="eyebrow">Kiến thức đồng hồ</span>
+        <h2 class="font-serif" style="font-size: 2.1rem;">Chia sẻ ngắn gọn, dễ hiểu</h2>
+      </div>
+      <div class="grid grid--3">
+        {ARTICLES.map((post) => (
+          <a href={`/kien-thuc/${post.slug}/`} class="card">
+            <span class="eyebrow">{post.category} · {post.readTime}</span>
+            <h3>{post.title}</h3>
+            <p class="card__meta">{post.summary}</p>
+            <span class="card__link">Đọc bài viết →</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CtaBanner />
+</BaseLayout>
+
+<style>
+  .hero__grid {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 2.5rem;
+    align-items: center;
+  }
+
+  .hero__title {
+    font-size: clamp(2rem, 3.6vw, 3rem);
+    color: #ffffff;
+    margin-bottom: 1rem;
+  }
+
+  .hero__meta {
+    margin-top: 1.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.65rem;
+    font-size: 0.9rem;
+    color: var(--dark-muted);
+  }
+
+  .hero__meta a:hover {
+    color: var(--gold-light);
+  }
+
+  @media (max-width: 900px) {
+    .hero__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

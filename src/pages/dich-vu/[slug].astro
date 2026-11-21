@@ -1,0 +1,70 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ImageSlot from '../../components/ImageSlot.astro';
+import CtaBanner from '../../components/CtaBanner.astro';
+import { SITE } from '../../data/site';
+import { SERVICES } from '../../data/catalog';
+
+export function getStaticPaths() {
+  return SERVICES.map((service) => ({
+    params: { slug: service.slug },
+    props: { service },
+  }));
+}
+
+const { service } = Astro.props;
+---
+
+<BaseLayout
+  title={`${service.title} — ${SITE.name}`}
+  description={service.summary}
+>
+  <section class="section section--surface">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="/">Trang chủ</a> / <a href="/sua-dong-ho-cao-cap/">Dịch vụ</a> / <span>{service.shortTitle}</span>
+      </nav>
+
+      <div class="prose">
+        <span class="eyebrow">Dịch vụ chuyên sâu</span>
+        <h1 class="font-serif" style="font-size: clamp(1.9rem, 3.2vw, 2.6rem);">{service.title}</h1>
+        <p class="lead">{service.summary}</p>
+
+        <div class="grid grid--2" style="margin: 1.75rem 0;">
+          <div class="card">
+            <span class="eyebrow">Thời gian dự kiến</span>
+            <p style="margin: 0; font-weight: 600;">{service.duration}</p>
+          </div>
+          <div class="card">
+            <span class="eyebrow">Chính sách bảo hành</span>
+            <p style="margin: 0; font-weight: 600;">{service.warranty}</p>
+          </div>
+        </div>
+
+        <div style="margin: 2rem 0;">
+          <ImageSlot ratio="16/9" label={`Ảnh thực tế: ${service.shortTitle}`} note={service.photoNote} />
+        </div>
+
+        <h2>Khi nào nên sử dụng dịch vụ này?</h2>
+        <ul>
+          {service.suitableFor.map((item) => (
+            <li>{item}</li>
+          ))}
+        </ul>
+
+        <h2>Quy trình thực hiện tại {SITE.name}</h2>
+        <ol>
+          {service.steps.map((step) => (
+            <li>{step}</li>
+          ))}
+        </ol>
+
+        <div class="notice" style="margin-top: 2rem;">
+          <strong>Lưu ý về chi phí:</strong> Mỗi dòng máy (3 kim, lịch, Chronograph hay máy phức tạp) có cấu tạo khác nhau. Tôi luôn kiểm tra máy trực tiếp và báo giá rõ ràng trước khi làm.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CtaBanner />
+</BaseLayout>

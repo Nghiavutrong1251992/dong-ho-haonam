@@ -1,0 +1,54 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ImageSlot from '../../components/ImageSlot.astro';
+import CtaBanner from '../../components/CtaBanner.astro';
+import { SITE } from '../../data/site';
+import { REPAIR_CASES } from '../../data/catalog';
+
+export function getStaticPaths() {
+  return REPAIR_CASES.map((item) => ({
+    params: { slug: item.slug },
+    props: { item },
+  }));
+}
+
+const { item } = Astro.props;
+---
+
+<BaseLayout
+  title={`${item.title} — ${SITE.name}`}
+  description={`${item.issue} ${item.result}`}
+>
+  <section class="section section--surface">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="/">Trang chủ</a> / <a href="/du-an/">Dự án sửa chữa</a> / <span>{item.brand}</span>
+      </nav>
+
+      <div class="prose">
+        <span class="eyebrow">{item.brand} · {item.model}</span>
+        <h1 class="font-serif" style="font-size: clamp(1.9rem, 3.2vw, 2.5rem);">{item.title}</h1>
+
+        <div class="grid grid--2" style="margin: 1.75rem 0;">
+          <ImageSlot ratio="4/3" label="Ảnh trước khi sửa" note={item.beforeNote} />
+          <ImageSlot ratio="4/3" label="Ảnh sau khi hoàn thiện" note={item.afterNote} />
+        </div>
+
+        <h2>1. Tình trạng tiếp nhận</h2>
+        <p>{item.issue}</p>
+
+        <h2>2. Công việc đã thực hiện</h2>
+        <ul>
+          {item.workDone.map((step) => (
+            <li>{step}</li>
+          ))}
+        </ul>
+
+        <h2>3. Kết quả kiểm định</h2>
+        <p>{item.result}</p>
+      </div>
+    </div>
+  </section>
+
+  <CtaBanner />
+</BaseLayout>

@@ -1,0 +1,46 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ImageSlot from '../../components/ImageSlot.astro';
+import CtaBanner from '../../components/CtaBanner.astro';
+import { SITE } from '../../data/site';
+import { REPAIR_CASES } from '../../data/catalog';
+---
+
+<BaseLayout
+  title={`Dự án sửa chữa thực tế — ${SITE.name}`}
+  description="Các ca sửa chữa và bảo dưỡng đồng hồ cao cấp thực tế tại Hao Nam Watch Care kèm ảnh trước và sau."
+>
+  <section class="section section--surface">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="/">Trang chủ</a> / <span>Dự án sửa chữa</span>
+      </nav>
+
+      <div class="section__header">
+        <span class="eyebrow">Service Cases</span>
+        <h1 class="font-serif" style="font-size: clamp(2rem, 3.3vw, 2.7rem);">Dự án sửa chữa thực tế</h1>
+        <p class="lead">
+          Mỗi chiếc đồng hồ đều được ghi nhận tình trạng ban đầu, các bước xử lý và kết quả đo kiểm trước khi bàn giao.
+        </p>
+      </div>
+
+      <div class="grid grid--2">
+        {REPAIR_CASES.map((item) => (
+          <article class="card">
+            <div class="grid grid--2" style="gap: 0.75rem; margin-bottom: 1.25rem;">
+              <ImageSlot ratio="4/3" label="Trước khi sửa" note={item.beforeNote} />
+              <ImageSlot ratio="4/3" label="Sau hoàn thiện" note={item.afterNote} />
+            </div>
+            <span class="eyebrow">{item.brand} · {item.model}</span>
+            <h2>{item.title}</h2>
+            <p class="card__meta"><strong>Tình trạng:</strong> {item.issue}</p>
+            <p class="card__meta" style="margin-bottom: 0;"><strong>Kết quả:</strong> {item.result}</p>
+            <a href={`/du-an/${item.slug}/`} class="card__link">Xem chi tiết ca sửa →</a>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CtaBanner />
+</BaseLayout>

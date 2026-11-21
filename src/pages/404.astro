@@ -1,0 +1,18 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { SITE } from '../data/site';
+---
+
+<BaseLayout title={`Không tìm thấy trang — ${SITE.name}`}>
+  <section class="section section--surface" style="text-align: center; padding: 6rem 0;">
+    <div class="container" style="max-width: 560px;">
+      <span class="eyebrow">404</span>
+      <h1 class="font-serif" style="font-size: 2.3rem;">Trang bạn tìm không tồn tại</h1>
+      <p class="lead">Có thể đường dẫn đã thay đổi. Bạn có thể quay về trang chủ hoặc xem các dịch vụ sửa đồng hồ cao cấp.</p>
+      <div class="btn-group" style="justify-content: center; margin-top: 1.5rem;">
+        <a href="/" class="btn btn--primary">Về trang chủ</a>
+        <a href="/sua-dong-ho-cao-cap/" class="btn btn--outline">Xem dịch vụ</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://haonamwatchcare.com/sitemap-index.xml

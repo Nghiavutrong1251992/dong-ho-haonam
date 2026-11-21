@@ -1,0 +1,128 @@
+---
+import { LEGAL_DISCLAIMER, NAV_ITEMS, SITE } from '../data/site';
+---
+
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div class="footer-brand">
+      <div class="footer-brand__name">{SITE.name}</div>
+      <p class="footer-brand__desc">
+        Tôi là {SITE.owner}, trực tiếp kiểm tra, bảo dưỡng và sửa chữa đồng hồ cơ cao cấp, đồng hồ Thụy Sĩ với đầy đủ máy móc chuyên dụng và quy trình minh bạch.
+      </p>
+      <p class="footer-hours">{SITE.hours}</p>
+    </div>
+
+    <div>
+      <h3 class="footer-title">Danh mục</h3>
+      <ul class="footer-links">
+        <li><a href="/">Trang chủ</a></li>
+        {NAV_ITEMS.map((item) => (
+          <li><a href={item.href}>{item.label}</a></li>
+        ))}
+      </ul>
+    </div>
+
+    <div>
+      <h3 class="footer-title">Liên hệ trực tiếp</h3>
+      <ul class="footer-links">
+        <li>
+          Điện thoại / Zalo: <a href={SITE.phoneHref}><strong>{SITE.phoneDisplay}</strong></a>
+        </li>
+        <li>
+          Zalo tư vấn: <a href={SITE.zaloHref} target="_blank" rel="noopener noreferrer">Nhắn Zalo ngay</a>
+        </li>
+        <li>
+          WhatsApp: <a href={SITE.whatsappHref} target="_blank" rel="noopener noreferrer">+84 902 286 886</a>
+        </li>
+        <li>
+          Facebook: <a href={SITE.facebookHref} target="_blank" rel="noopener noreferrer">{SITE.facebookLabel}</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="container footer-bottom">
+    <p class="footer-disclaimer">{LEGAL_DISCLAIMER}</p>
+    <p class="footer-copy">© {new Date().getFullYear()} {SITE.name}. Bảo lưu mọi quyền.</p>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    background: var(--dark);
+    color: var(--dark-ink);
+    padding: 4rem 0 2rem;
+    border-top: 1px solid var(--border-dark);
+  }
+
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1.2fr;
+    gap: 2.5rem;
+    padding-bottom: 2.5rem;
+    border-bottom: 1px solid var(--border-dark);
+  }
+
+  .footer-brand__name {
+    font-family: var(--font-serif);
+    font-size: 1.35rem;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+    color: var(--gold-light);
+  }
+
+  .footer-brand__desc,
+  .footer-hours {
+    color: var(--dark-muted);
+    font-size: 0.92rem;
+  }
+
+  .footer-title {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--gold-light);
+    margin-bottom: 1rem;
+  }
+
+  .footer-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+    font-size: 0.92rem;
+    color: var(--dark-muted);
+  }
+
+  .footer-links a:hover {
+    color: var(--dark-ink);
+  }
+
+  .footer-bottom {
+    padding-top: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .footer-disclaimer {
+    font-size: 0.8rem;
+    color: #8b9199;
+    margin: 0;
+  }
+
+  .footer-copy {
+    font-size: 0.8rem;
+    color: #6f7680;
+    margin: 0;
+  }
+
+  @media (max-width: 800px) {
+    .footer-grid {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+  }
+</style>
