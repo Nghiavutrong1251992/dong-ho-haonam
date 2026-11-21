@@ -1,6 +1,7 @@
 ---
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import FloatingActions from '../components/FloatingActions.astro';
 import { SITE } from '../data/site';
 import '../styles/global.css';
 
@@ -16,15 +17,19 @@ const {
   canonicalPath = Astro.url.pathname,
 } = Astro.props;
 
-const canonicalUrl = new URL(canonicalPath, Astro.site ?? 'https://haonamwatchcare.com').toString();
+const siteOrigin = Astro.site?.toString() ?? 'https://haonamwatchcare.com';
+const canonicalUrl = new URL(canonicalPath, siteOrigin).toString();
+const logoUrl = new URL('/logo.webp', siteOrigin).toString();
 
 const schemaData = {
   '@context': 'https://schema.org',
   '@type': 'LocalBusiness',
   name: SITE.name,
   description: SITE.description,
+  logo: logoUrl,
+  image: logoUrl,
   telephone: '+84902286886',
-  url: Astro.site?.toString() ?? 'https://haonamwatchcare.com',
+  url: siteOrigin,
   sameAs: [SITE.facebookHref],
   priceRange: '$$$',
   areaServed: ['VN', 'International'],
@@ -38,6 +43,7 @@ const schemaData = {
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title}</title>
     <meta name="description" content={description} />
+    <link rel="icon" type="image/png" href="/favicon.png" />
     <link rel="canonical" href={canonicalUrl} />
 
     <meta property="og:type" content="website" />
@@ -61,5 +67,6 @@ const schemaData = {
       <slot />
     </main>
     <Footer />
+    <FloatingActions />
   </body>
 </html>

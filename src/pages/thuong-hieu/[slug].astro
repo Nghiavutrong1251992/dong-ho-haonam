@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ImageSlot from '../../components/ImageSlot.astro';
+import ContactSidebar from '../../components/ContactSidebar.astro';
 import CtaBanner from '../../components/CtaBanner.astro';
 import { SITE, LEGAL_DISCLAIMER } from '../../data/site';
 import { BRANDS } from '../../data/catalog';
@@ -25,39 +26,43 @@ const { brand } = Astro.props;
         <a href="/">Trang chủ</a> / <a href="/thuong-hieu/">Thương hiệu</a> / <span>{brand.name}</span>
       </nav>
 
-      <div class="prose">
-        <span class="eyebrow">Thương hiệu {brand.name}</span>
-        <h1 class="font-serif" style="font-size: clamp(1.9rem, 3.2vw, 2.6rem);">{brand.headline}</h1>
-        <p class="lead">{brand.summary}</p>
+      <div class="content-with-sidebar">
+        <div class="prose">
+          <span class="eyebrow">Thương hiệu {brand.name}</span>
+          <h1 class="font-serif" style="font-size: clamp(1.9rem, 3.2vw, 2.6rem);">{brand.headline}</h1>
+          <p class="lead">{brand.summary}</p>
 
-        <div style="margin: 2rem 0;">
-          <ImageSlot ratio="16/9" label={`Ảnh sửa chữa thực tế: ${brand.name}`} note={brand.photoNote} />
+          <div style="margin: 2rem 0;">
+            <ImageSlot ratio="16/9" label={`Ảnh sửa chữa thực tế: ${brand.name}`} note={brand.photoNote} />
+          </div>
+
+          <h2>Các dòng máy (Calibre) thường tiếp nhận</h2>
+          <ul>
+            {brand.commonCalibres.map((cal) => (
+              <li>{cal}</li>
+            ))}
+          </ul>
+
+          <h2>Những vấn đề thường gặp</h2>
+          <ul>
+            {brand.commonIssues.map((issue) => (
+              <li>{issue}</li>
+            ))}
+          </ul>
+
+          <h2>Lưu ý kỹ thuật khi xử lý {brand.name}</h2>
+          <ul>
+            {brand.technicalNotes.map((note) => (
+              <li>{note}</li>
+            ))}
+          </ul>
+
+          <div class="notice" style="margin-top: 2rem;">
+            {LEGAL_DISCLAIMER}
+          </div>
         </div>
 
-        <h2>Các dòng máy (Calibre) thường tiếp nhận</h2>
-        <ul>
-          {brand.commonCalibres.map((cal) => (
-            <li>{cal}</li>
-          ))}
-        </ul>
-
-        <h2>Những vấn đề thường gặp</h2>
-        <ul>
-          {brand.commonIssues.map((issue) => (
-            <li>{issue}</li>
-          ))}
-        </ul>
-
-        <h2>Lưu ý kỹ thuật khi xử lý {brand.name}</h2>
-        <ul>
-          {brand.technicalNotes.map((note) => (
-            <li>{note}</li>
-          ))}
-        </ul>
-
-        <div class="notice" style="margin-top: 2rem;">
-          {LEGAL_DISCLAIMER}
-        </div>
+        <ContactSidebar heading={`Tư vấn sửa ${brand.name}`} />
       </div>
     </div>
   </section>

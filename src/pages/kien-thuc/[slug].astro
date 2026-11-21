@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import ContactSidebar from '../../components/ContactSidebar.astro';
 import CtaBanner from '../../components/CtaBanner.astro';
 import { SITE } from '../../data/site';
 import { ARTICLES } from '../../data/catalog';
@@ -24,20 +25,24 @@ const { article } = Astro.props;
         <a href="/">Trang chủ</a> / <a href="/kien-thuc/">Kiến thức</a> / <span>{article.category}</span>
       </nav>
 
-      <article class="prose">
-        <span class="eyebrow">{article.category} · {article.readTime}</span>
-        <h1 class="font-serif" style="font-size: clamp(1.9rem, 3.2vw, 2.5rem);">{article.title}</h1>
-        <p class="lead">{article.summary}</p>
+      <div class="content-with-sidebar">
+        <article class="prose">
+          <span class="eyebrow">{article.category} · {article.readTime}</span>
+          <h1 class="font-serif" style="font-size: clamp(1.9rem, 3.2vw, 2.5rem);">{article.title}</h1>
+          <p class="lead">{article.summary}</p>
 
-        {article.sections.map((sec) => (
-          <section>
-            <h2>{sec.heading}</h2>
-            {sec.body.map((paragraph) => (
-              <p>{paragraph}</p>
-            ))}
-          </section>
-        ))}
-      </article>
+          {article.sections.map((sec) => (
+            <section>
+              <h2>{sec.heading}</h2>
+              {sec.body.map((paragraph) => (
+                <p>{paragraph}</p>
+              ))}
+            </section>
+          ))}
+        </article>
+
+        <ContactSidebar />
+      </div>
     </div>
   </section>
 

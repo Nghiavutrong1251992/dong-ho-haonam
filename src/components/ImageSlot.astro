@@ -1,9 +1,13 @@
 ---
+import { SITE } from '../data/site';
+
 interface Props {
   label: string;
   note?: string;
   ratio?: '16/9' | '4/3' | '3/2' | '1/1';
   dark?: boolean;
+  src?: string;
+  alt?: string;
 }
 
 const {
@@ -11,20 +15,34 @@ const {
   note = 'Chỗ trống để chèn ảnh thực tế sau',
   ratio = '4/3',
   dark = false,
+  src,
+  alt = label,
 } = Astro.props;
+
+const r2Base = SITE.r2PublicUrl.trim();
+const resolvedSrc =
+  src && !src.startsWith('http') && r2Base
+    ? `${r2Base.replace(/\/$/, '')}/${src.replace(/^\//, '')}`
+    : src;
 ---
 
-<figure class:list={['image-slot', { 'image-slot--dark': dark }]} style={`aspect-ratio: ${ratio};`}>
-  <div class="image-slot__inner">
-    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
-      <rect x="3" y="5" width="18" height="14" rx="2" />
-      <circle cx="8.5" cy="10.5" r="1.5" />
-      <path d="M21 15l-4.5-4.5L7 19" />
-    </svg>
-    <strong class="image-slot__label">{label}</strong>
-    <span class="image-slot__note">{note}</span>
-  </div>
-</figure>
+{resolvedSrc ? (
+  <figure class="image-slot image-slot--filled" style={`aspect-ratio: ${ratio};`}>
+    <img src={resolvedSrc} alt={alt} loading="lazy" decoding="async" />
+  </figure>
+) : (
+  <figure class:list={['image-slot', { 'image-slot--dark': dark }]} style={`aspect-ratio: ${ratio};`}>
+    <div class="image-slot__inner">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+        <rect x="3" y="5" width="18" height="14" rx="2" />
+        <circle cx="8.5" cy="10.5" r="1.5" />
+        <path d="M21 15l-4.5-4.5L7 19" />
+      </svg>
+      <strong class="image-slot__label">{label}</strong>
+      <span class="image-slot__note">{note}</span>
+    </div>
+  </figure>
+)}
 
 <style>
   .image-slot {
@@ -45,6 +63,18 @@ const {
     border-color: #3a4048;
     background: linear-gradient(135deg, #171a1e 0%, #1f242a 100%);
     color: #b7bec7;
+  }
+
+  .image-slot--filled {
+    border: none;
+    padding: 0;
+    overflow: hidden;
+  }
+
+  .image-slot--filled img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 
   .image-slot__inner {

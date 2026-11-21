@@ -5,7 +5,18 @@ import { LEGAL_DISCLAIMER, NAV_ITEMS, SITE } from '../data/site';
 <footer class="site-footer">
   <div class="container footer-grid">
     <div class="footer-brand">
-      <div class="footer-brand__name">{SITE.name}</div>
+      <div class="footer-brand__head">
+        <img
+          src="/logo.webp"
+          alt={SITE.name}
+          width="72"
+          height="72"
+          class="footer-brand__logo"
+          loading="lazy"
+          decoding="async"
+        />
+        <div class="footer-brand__name">{SITE.name}</div>
+      </div>
       <p class="footer-brand__desc">
         Tôi là {SITE.owner}, trực tiếp kiểm tra, bảo dưỡng và sửa chữa đồng hồ cơ cao cấp, đồng hồ Thụy Sĩ với đầy đủ máy móc chuyên dụng và quy trình minh bạch.
       </p>
@@ -63,11 +74,26 @@ import { LEGAL_DISCLAIMER, NAV_ITEMS, SITE } from '../data/site';
     border-bottom: 1px solid var(--border-dark);
   }
 
+  .footer-brand__head {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .footer-brand__logo {
+    width: 72px;
+    height: 72px;
+    border-radius: var(--radius);
+    object-fit: cover;
+    border: 1px solid var(--gold-light);
+    flex-shrink: 0;
+  }
+
   .footer-brand__name {
     font-family: var(--font-serif);
     font-size: 1.35rem;
     font-weight: 700;
-    margin-bottom: 0.75rem;
     color: var(--gold-light);
   }
 

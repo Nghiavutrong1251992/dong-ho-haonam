@@ -1,0 +1,40 @@
+---
+import SocialIcons from './SocialIcons.astro';
+import { SITE } from '../data/site';
+
+interface Props {
+  heading?: string;
+}
+
+const { heading = 'Liên hệ Hào Nam' } = Astro.props;
+---
+
+<aside class="sidebar-sticky" aria-label="Sidebar liên hệ">
+  <div class="card">
+    <span class="eyebrow">Tư vấn trực tiếp</span>
+    <h2 class="font-serif" style="font-size: 1.4rem;">{heading}</h2>
+    <p class="card__meta">
+      Gửi ảnh đồng hồ và tình trạng đang gặp để tôi kiểm tra trước và tư vấn hướng xử lý rõ ràng.
+    </p>
+
+    <ul class="sidebar-list">
+      <li>
+        <span>Thợ kỹ thuật trực tiếp</span>
+        <strong>{SITE.owner} ({SITE.name})</strong>
+      </li>
+      <li>
+        <span>Điện thoại / Zalo / WhatsApp</span>
+        <a href={SITE.phoneHref}>{SITE.phoneDisplay}</a>
+      </li>
+      <li>
+        <span>Thời gian làm việc</span>
+        <strong>{SITE.hours}</strong>
+      </li>
+    </ul>
+
+    <div style="display: flex; flex-direction: column; gap: 0.9rem;">
+      <a href="/lien-he/#dat-lich" class="btn btn--primary">Đặt lịch kiểm tra</a>
+      <SocialIcons />
+    </div>
+  </div>
+</aside>

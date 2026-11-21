@@ -12,6 +12,7 @@ export const SITE = {
   facebookLabel: 'facebook.com/Haonam1139',
   locale: 'vi-VN',
   hours: 'Thứ 2 – Chủ nhật: 09:00 – 19:00',
+  r2PublicUrl: '' as string,
 } as const;
 
 export const NAV_ITEMS = [
